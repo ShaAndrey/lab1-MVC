@@ -39,8 +39,4 @@ class Queue {
 };
 
 
-class model {
-
-};
-
 #endif //LAB1_MODEL_H

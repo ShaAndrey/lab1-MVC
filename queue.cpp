@@ -1,4 +1,4 @@
-#include "model.h"
+#include "queue.h"
 
 Queue::Queue() : max_size_(4) {
   data_ = new std::string[max_size_];
