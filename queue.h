@@ -1,7 +1,7 @@
 #ifndef LAB1_MODEL_H
 #define LAB1_MODEL_H
 
-#include <string>
+template<typename T>
 class Queue {
  public:
   Queue();
@@ -10,13 +10,17 @@ class Queue {
   Queue(Queue&&);
   ~Queue();
 
-  void Push(const std::string& value = "");
+  void Push(const T& value = "");
 
-  std::string Front(std::string default_value = "") const;
+  T Front() const;
 
   bool Pop();
 
   int Size() const;
+
+  bool operator==(const Queue& other);
+
+  bool operator!=(const Queue& other);
 
  private:
   int head_ = 0;
@@ -24,7 +28,7 @@ class Queue {
   int size_ = 0;
   int max_size_;
 
-  std::string* data_;
+  T* data_;
 
   void Reorginize(int new_size);
 
@@ -33,10 +37,119 @@ class Queue {
   bool IsEmpty() const;
 
   bool IsFull() const;
-
-  friend bool operator==(const Queue& l, const Queue& r);
-  friend bool operator!=(const Queue& l, const Queue& r);
 };
 
+template<typename T>
+bool Queue<T>::operator==(const Queue& other) {
+  if (max_size_ != other.max_size_ || size_ != other.size_) {
+    return false;
+  }
+  for (int i = 0; i < size_; ++i) {
+    if (data_[(head_ + i) % max_size_] != other.data_[(i + other.head_) % other.max_size_]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+template<typename T>
+bool Queue<T>::operator!=(const Queue& other) {
+  return !(*this == other);
+}
+
+template<typename T>
+Queue<T>::Queue() : max_size_(4), data_(new T[max_size_]) {}
+
+template<typename T>
+Queue<T>::Queue(int max_size) : max_size_(max_size), data_(new T[max_size_]) {}
+
+template<typename T>
+Queue<T>::Queue(const Queue& other) : head_(other.head_),
+                                      tail_(other.tail_),
+                                      size_(other.size_),
+                                      max_size_(other.max_size_),
+                                      data_(new T[max_size_]){
+  for (int i = 0; i < size_; ++i) {
+    data_[(head_ + i) % max_size_] = other.data_[(head_ + i) % max_size_];
+  }
+}
+
+template<typename T>
+Queue<T>::Queue(Queue&&) = default;
+
+template<typename T>
+Queue<T>::~Queue() {
+  delete[] data_;
+}
+
+template<typename T>
+void Queue<T>::Push(const T& value) {
+  if (IsFull()) {
+    Reorginize(max_size_ * 2);
+  }
+  if (!IsEmpty()) {
+    tail_ = (tail_ + 1) % max_size_;
+  }
+  data_[tail_] = value;
+  ++size_;
+
+}
+
+template<typename T>
+T Queue<T>::Front() const {
+  if (!IsEmpty()) {
+    return data_[head_];
+  } else {
+    return 0;
+  }
+}
+
+template<typename T>
+bool Queue<T>::Pop() {
+  if (IsEmpty()) {
+    return false;
+  }
+  if (size_ < max_size_ / 4) {
+    Reorginize(max_size_ / 2);
+  }
+  if (size_ != 1) {
+    head_ = (head_ + 1) % max_size_;
+  }
+  --size_;
+  return true;
+}
+
+template<typename T>
+int Queue<T>::Size() const {
+  return size_;
+}
+
+template<typename T>
+int Queue<T>::MaxSize() const {
+  return max_size_;
+}
+
+template<typename T>
+bool Queue<T>::IsEmpty() const {
+  return size_ == 0;
+}
+
+template<typename T>
+bool Queue<T>::IsFull() const {
+  return size_ == max_size_;
+}
+
+template<typename T>
+void Queue<T>::Reorginize(int new_size) {
+  auto b = new T[new_size];
+  for (int i = 0; i < size_; ++i) {
+    b[i] = data_[(head_ + i) % max_size_];
+  }
+  max_size_ = new_size;
+  head_ = 0;
+  tail_ = size_;
+  delete[] data_;
+  data_ = b;
+}
 
 #endif //LAB1_MODEL_H
