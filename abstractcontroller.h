@@ -22,8 +22,8 @@ public:
 
 protected:
     std::shared_ptr<AbstractView> view_;
-    //Queue<QString> first_queue_;
-    //Queue<QString> second_queue_;
+    Queue<QString> first_queue_;
+    Queue<QString> second_queue_;
     bool queues_comparison_;
 };
 
