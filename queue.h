@@ -22,6 +22,8 @@ class Queue {
 
   bool operator!=(const Queue& other);
 
+  bool IsEmpty() const;
+
  private:
   int head_ = 0;
   int tail_ = 0;
@@ -33,8 +35,6 @@ class Queue {
   void Reorginize(int new_size);
 
   int MaxSize() const;
-
-  bool IsEmpty() const;
 
   bool IsFull() const;
 };

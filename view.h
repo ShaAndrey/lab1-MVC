@@ -13,7 +13,7 @@ public:
     virtual void AddPersonToSecondQueue(const QString& name) override;
     virtual void ServePersonInFirstQueue() override;
     virtual void ServePersonInSecondQueue() override;
-    virtual void CompareQueues() override;
+    virtual void CompareQueues(bool queues_comparison_) override;
 };
 
 #endif // VIEW_H
