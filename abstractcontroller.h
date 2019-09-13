@@ -14,8 +14,8 @@ public:
         view_ = view;
     }
 
-    virtual void AddPersonToFirstQueue(const QString* name) = 0;
-    virtual void AddPersonToSecondQueue(const QString* name) = 0;
+    virtual void AddPersonToFirstQueue(const QString& name) = 0;
+    virtual void AddPersonToSecondQueue(const QString& name) = 0;
     virtual void ServePersonInFirstQueue() = 0;
     virtual void ServePersonInSecondQueue() = 0;
     virtual void CompareQueues() = 0;
