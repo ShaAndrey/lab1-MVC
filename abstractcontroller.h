@@ -8,7 +8,8 @@
 #include "abstractview.h"
 
 class AbstractController {
-    virtual ~AbstractController() = 0;
+public:
+    virtual ~AbstractController() = default;
     virtual void SetView(const std::shared_ptr<AbstractView> view) {
         view_ = view;
     }
