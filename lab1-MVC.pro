@@ -16,7 +16,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    queue.cpp
+    controller.cpp \
+    view.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -26,4 +27,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     abstractview.h \
     queue.h \
-    abstractcontroller.h
+    abstractcontroller.h \
+    controller.h \
+    view.h
