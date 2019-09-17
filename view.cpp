@@ -104,10 +104,10 @@ void View::ServePersonInSecondQueue() {
 }
 void View::CompareQueues(bool queues_comparison_) {
     if(queues_comparison_) {
-        comparison_result_->setText(QString("Equal"));
+        comparison_result_->setText(QString("Равны"));
     }
     else {
-        comparison_result_->setText(QString("Not equal"));
+        comparison_result_->setText(QString("Не равны"));
     }
 }
 
