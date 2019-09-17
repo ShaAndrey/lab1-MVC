@@ -3,16 +3,32 @@
 
 View::View() : controller_(std::make_shared<Controller>(this)),
                window_layout_(new QGridLayout()),
-               label_1_(new QLabel("Queue 1")),
-               label_2_(new QLabel("Queue 2"))
+               label_1_(new QLabel("Касса 1")),
+               label_2_(new QLabel("Касса 2")),
+               name_to_first_queue_(new QLineEdit()),
+               name_to_second_queue_(new QLineEdit()),
+               serve_from_first_queue_(new QPushButton()),
+               serve_from_second_queue_(new QPushButton()),
+               quantity_in_first_queue_(new QLCDNumber()),
+               quantity_in_second_queue_(new QLCDNumber()),
+               add_to_first_queue_(new QPushButton()),
+               add_to_second_queue_(new QPushButton()),
+               queue_1_(new QListWidget()),
+               queue_2_(new QListWidget())
 {
 
     auto items_size_policy =
         QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     label_1_->setSizePolicy(items_size_policy);
+    label_2_->setSizePolicy(items_size_policy);
 
     window_layout_->addWidget(label_1_, 0, 0, Qt::AlignLeft);
+    window_layout_->addWidget(label_1_, 0, 5, Qt::AlignLeft);
+
+    auto widget = new QWidget();
+    widget->setLayout(window_layout_);
+    setCentralWidget(widget);
 }
 
 void View::AddPersonToFirstQueue(const QString& name) {
