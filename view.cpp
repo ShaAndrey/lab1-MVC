@@ -58,15 +58,6 @@ View::View() : controller_(new Controller(this)),
     widget->setLayout(window_layout_);
     setCentralWidget(widget);
 
-    connect(add_to_first_queue_, &QPushButton::clicked, [&]() {
-        controller_->AddPersonToFirstQueue(name_to_first_queue_->text());
-        name_to_first_queue_->setText("");
-    });
-    connect(add_to_second_queue_, &QPushButton::clicked, [&]() {
-        controller_->AddPersonToSecondQueue(name_to_second_queue_->text());
-        name_to_second_queue_->setText("");
-    };
-
     for (int i = 0; i < num_of_rows_; ++i) {
         window_layout_->setRowStretch(i, 1);
     }
@@ -75,9 +66,15 @@ View::View() : controller_(new Controller(this)),
         window_layout_->setRowStretch(i, 1);
     }
 
-    connect(add_to_first_queue_, &QPushButton::clicked, add_to_first_queue_slot);
-    connect(add_to_second_queue_, &QPushButton::clicked, add_to_second_queue_slot);
+    connect(add_to_first_queue_, &QPushButton::clicked, [&]() {
+        controller_->AddPersonToFirstQueue(name_to_first_queue_->text());
+        name_to_first_queue_->setText("");
+    });
 
+    connect(add_to_second_queue_, &QPushButton::clicked, [&]() {
+        controller_->AddPersonToSecondQueue(name_to_second_queue_->text());
+        name_to_second_queue_->setText("");
+    });
     connect(serve_from_first_queue_, &QPushButton::clicked, [&]() {
         controller_->ServePersonInFirstQueue();
     });
@@ -87,7 +84,7 @@ View::View() : controller_(new Controller(this)),
     connect(compare_queues_, &QPushButton::clicked, [&](){
         controller_->CompareQueues();
     });
-
+}
 
 void View::AddPersonToFirstQueue(const QString& name) {
     queue_1_->addItem(name);
@@ -114,4 +111,3 @@ void View::CompareQueues(bool queues_comparison_) {
     }
 }
 
-View::~View() {}
