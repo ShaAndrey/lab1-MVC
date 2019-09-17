@@ -5,7 +5,7 @@
 
 class Controller : public AbstractController {
 public:
-    Controller(AbstractView*);
+    Controller(AbstractView* view);
     virtual ~Controller() override;
 
     virtual void AddPersonToFirstQueue(const QString& name) override;

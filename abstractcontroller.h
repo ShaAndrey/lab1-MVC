@@ -10,7 +10,7 @@
 class AbstractController {
 public:
     virtual ~AbstractController() = default;
-    virtual void SetView(const std::shared_ptr<AbstractView> view) {
+    virtual void SetView(AbstractView* view) {
         view_ = view;
     }
 
@@ -21,7 +21,7 @@ public:
     virtual void CompareQueues() = 0;
 
 protected:
-    std::shared_ptr<AbstractView> view_;
+    AbstractView* view_;
     Queue<QString> first_queue_;
     Queue<QString> second_queue_;
     bool queues_comparison_;

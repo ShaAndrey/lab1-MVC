@@ -2,7 +2,7 @@
 
 
 Controller::Controller(AbstractView* view) {
-
+    SetView(view);
 }
 
 void Controller::CheckViewExistance() {

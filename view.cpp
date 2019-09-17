@@ -1,7 +1,7 @@
 #include "view.h"
 
 
-View::View() : controller_(std::make_shared<Controller>(this)),
+View::View() : controller_(new Controller(this)),
                window_layout_(new QGridLayout()),
                label_1_(new QLabel("Касса 1")),
                label_2_(new QLabel("Касса 2")),

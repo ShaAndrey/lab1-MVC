@@ -28,7 +28,7 @@ public:
     virtual void CompareQueues(bool queues_comparison_) override;
 
 private:
-    std::shared_ptr<Controller> controller_;
+    Controller* controller_;
 
     QGridLayout* window_layout_;
 
