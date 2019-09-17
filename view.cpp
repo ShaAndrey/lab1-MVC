@@ -16,16 +16,20 @@ View::View() : controller_(std::make_shared<Controller>(this)),
 }
 
 void View::AddPersonToFirstQueue(const QString& name) {
-
+    queue_1_->addItem(name);
+    quantity_in_first_queue_->display(queue_1_->count());
 }
 void View::AddPersonToSecondQueue(const QString& name) {
-
+    queue_2_->addItem(name);
+    quantity_in_second_queue_->display(queue_2_->count());
 }
 void View::ServePersonInFirstQueue() {
-
+    queue_1_->takeItem(0);
+    quantity_in_first_queue_->display(queue_1_->count());
 }
 void View::ServePersonInSecondQueue() {
-
+    queue_2_->takeItem(0);
+    quantity_in_second_queue_->display(queue_2_->count());
 }
 void View::CompareQueues(bool queues_comparison_) {
 
