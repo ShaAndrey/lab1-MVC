@@ -32,18 +32,23 @@ View::View() : controller_(std::make_shared<Controller>(this)),
     widget->setLayout(window_layout_);
     setCentralWidget(widget);
 
-
-    auto add_to_first_queue_slot = [&]() {
+    connect(add_to_first_queue_, &QPushButton::clicked, [&]() {
         controller_->AddPersonToFirstQueue(name_to_first_queue_->text());
         name_to_first_queue_->setText("");
-    };
-    auto add_to_second_queue_slot = [&]() {
+    });
+    connect(add_to_second_queue_, &QPushButton::clicked, [&]() {
         controller_->AddPersonToSecondQueue(name_to_second_queue_->text());
         name_to_second_queue_->setText("");
-    };
-
-    connect(add_to_first_queue_, &QPushButton::clicked, add_to_first_queue_slot);
-    connect(add_to_second_queue_, &QPushButton::clicked, add_to_second_queue_slot);
+    });
+    connect(serve_from_first_queue_, &QPushButton::clicked, [&]() {
+        controller_->ServePersonInFirstQueue();
+    });
+    connect(serve_from_second_queue_, &QPushButton::clicked, [&]() {
+        controller_->ServePersonInSecondQueue();
+    });
+    connect(compare_queues_, &QPushButton::clicked, [&](){
+        controller_->CompareQueues();
+    });
 }
 
 
