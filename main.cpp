@@ -12,5 +12,6 @@ int main(int argc, char *argv[])
     auto view = new View();
     view->show();
 
+
     return a.exec();
 }
