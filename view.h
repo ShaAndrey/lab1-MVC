@@ -3,12 +3,19 @@
 
 #include <QMainWindow>
 #include <QLabel>
+#include <QGridLayout>
 
 #include "abstractview.h"
 #include "memory"
 #include "controller.h"
 
-class View : public AbstractView
+#include <QLineEdit>
+#include <QPushButton>
+#include <QListWidget>
+#include <QLCDNumber>
+
+
+class View : public QMainWindow, public AbstractView
 {
 public:
     View();
@@ -22,13 +29,26 @@ public:
 
 private:
     std::shared_ptr<Controller> controller_;
-//    Controller* controller_;
+
+    QGridLayout* window_layout_;
 
     QLabel* label_1_;
     QLabel* label_2_;
 
+    QLineEdit* name_to_first_queue_;
+    QLineEdit* name_to_second_queue_;
 
+    QPushButton* serve_from_first_queue_;
+    QPushButton* serve_from_second_queue_;
 
+    QLCDNumber* quantity_in_first_queue_;
+    QLCDNumber* quantity_in_second_queue_;
+
+    QPushButton* add_to_first_queue_;
+    QPushButton* add_to_second_queue_;
+
+    QListWidget* queue_1_;
+    QListWidget* queue_2_;
 };
 
 #endif // VIEW_H

@@ -1,4 +1,5 @@
 #include <QCoreApplication>
+#include <QApplication>
 
 #include <memory>
 
@@ -6,9 +7,10 @@
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
+    QApplication a(argc, argv);
 
-//    auto view = std::make_shared<View>();
+    auto view = std::make_shared<View>();
+    view->show();
 
     return a.exec();
 }
