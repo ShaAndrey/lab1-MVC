@@ -16,7 +16,7 @@ View::View() : controller_(std::make_shared<Controller>(this)),
                queue_1_(new QListWidget()),
                queue_2_(new QListWidget()),
                compare_queues_(new QPushButton()),
-               comarison_result_(new QLabel())
+               comparison_result_(new QLabel())
 {
 
     auto items_size_policy =
@@ -31,7 +31,21 @@ View::View() : controller_(std::make_shared<Controller>(this)),
     auto widget = new QWidget();
     widget->setLayout(window_layout_);
     setCentralWidget(widget);
+
+
+    auto add_to_first_queue_slot = [&]() {
+        controller_->AddPersonToFirstQueue(name_to_first_queue_->text());
+        name_to_first_queue_->setText("");
+    };
+    auto add_to_second_queue_slot = [&]() {
+        controller_->AddPersonToSecondQueue(name_to_second_queue_->text());
+        name_to_second_queue_->setText("");
+    };
+
+    connect(add_to_first_queue_, &QPushButton::clicked, add_to_first_queue_slot);
+    connect(add_to_second_queue_, &QPushButton::clicked, add_to_second_queue_slot);
 }
+
 
 void View::AddPersonToFirstQueue(const QString& name) {
     queue_1_->addItem(name);
@@ -50,7 +64,12 @@ void View::ServePersonInSecondQueue() {
     quantity_in_second_queue_->display(queue_2_->count());
 }
 void View::CompareQueues(bool queues_comparison_) {
-
+    if(queues_comparison_) {
+        comparison_result_->setText(QString("Equal"));
+    }
+    else {
+        comparison_result_->setText(QString("Not equal"));
+    }
 }
 
 View::~View() {}

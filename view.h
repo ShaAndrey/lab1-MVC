@@ -52,7 +52,7 @@ private:
 
     QPushButton* compare_queues_;
 
-    QLabel* comarison_result_;
+    QLabel* comparison_result_;
 
 };
 
