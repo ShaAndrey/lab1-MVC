@@ -25,19 +25,19 @@ void Controller::AddPersonToSecondQueue(const QString& name) {
 }
 
 void Controller::ServePersonInFirstQueue() {
-    first_queue_.Pop();
     CheckViewExistance();
     if(!first_queue_.IsEmpty()) {
      view_->ServePersonInFirstQueue();
+     first_queue_.Pop();
     }
 }
 
 
 void Controller::ServePersonInSecondQueue() {
-    second_queue_.Pop();
     CheckViewExistance();
     if(!second_queue_.IsEmpty()) {
     view_->ServePersonInSecondQueue();
+    second_queue_.Pop();
     }
 }
 
