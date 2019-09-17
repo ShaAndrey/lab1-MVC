@@ -111,3 +111,6 @@ void View::CompareQueues(bool queues_comparison_) {
     }
 }
 
+View::~View() {
+    delete controller_;
+}
