@@ -1,6 +1,10 @@
 #include "controller.h"
 
 
+Controller::Controller(AbstractView* view) {
+
+}
+
 void Controller::CheckViewExistance() {
     if(view_ == nullptr) {
         throw std::runtime_error("View is not initialized");
@@ -41,3 +45,5 @@ void Controller::CompareQueues() {
     CheckViewExistance();
     view_->CompareQueues(first_queue_ == second_queue_);
 }
+
+Controller::~Controller() {}
