@@ -7,30 +7,58 @@ View::View() : controller_(std::make_shared<Controller>(this)),
                label_2_(new QLabel("Касса 2")),
                name_to_first_queue_(new QLineEdit()),
                name_to_second_queue_(new QLineEdit()),
-               serve_from_first_queue_(new QPushButton()),
-               serve_from_second_queue_(new QPushButton()),
-               quantity_in_first_queue_(new QLCDNumber()),
-               quantity_in_second_queue_(new QLCDNumber()),
-               add_to_first_queue_(new QPushButton()),
-               add_to_second_queue_(new QPushButton()),
+               serve_from_first_queue_(new QPushButton("Обслужить")),
+               serve_from_second_queue_(new QPushButton("Обслужить")),
+               quantity_in_first_queue_(new QLCDNumber(2)),
+               quantity_in_second_queue_(new QLCDNumber(2)),
+               add_to_first_queue_(new QPushButton("В очередь")),
+               add_to_second_queue_(new QPushButton("В очередь")),
                queue_1_(new QListWidget()),
                queue_2_(new QListWidget()),
-               compare_queues_(new QPushButton()),
-               comarison_result_(new QLabel())
+               compare_queues_(new QPushButton("Сравнить очереди")),
+               comparison_result_(new QLabel())
 {
+    setMinimumSize(1280, 720);
 
     auto items_size_policy =
         QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    label_1_->setSizePolicy(items_size_policy);
-    label_2_->setSizePolicy(items_size_policy);
+//    label_1_->setSizePolicy(items_size_policy);
+//    label_2_->setSizePolicy(items_size_policy);
+//    serve_from_first_queue_->setSizePolicy(items_size_policy);
+//    serve_from_second_queue_->setSizePolicy(items_size_policy);
+//    name_to_first_queue_->setSizePolicy(items_size_policy);
+//    name_to_second_queue_->setSizePolicy(items_size_policy);
+//    add_to_first_queue_->setSizePolicy(items_size_policy);
+//    add_to_second_queue_->setSizePolicy(items_size_policy);
+//    quantity_in_first_queue_->setSizePolicy(items_size_policy);
+//    quantity_in_second_queue_->setSizePolicy(items_size_policy);
+//    queue_1_->setSizePolicy(items_size_policy);
+//    queue_2_->setSizePolicy(items_size_policy);
+//    compare_queues_->setSizePolicy(items_size_policy);
+//    comparison_result_->setSizePolicy(items_size_policy);
 
-    window_layout_->addWidget(label_1_, 0, 0, Qt::AlignLeft);
-    window_layout_->addWidget(label_1_, 0, 5, Qt::AlignLeft);
+    window_layout_->addWidget(label_1_, 0, 1, Qt::AlignCenter);
+    window_layout_->addWidget(label_2_, 0, 4, Qt::AlignCenter);
+    window_layout_->addWidget(serve_from_first_queue_, 1, 0, Qt::AlignCenter);
+    window_layout_->addWidget(serve_from_second_queue_, 1, 5, Qt::AlignCenter);
+    window_layout_->addWidget(name_to_first_queue_, 2, 0, Qt::AlignCenter);
+    window_layout_->addWidget(name_to_second_queue_, 2, 5, Qt::AlignCenter);
+    window_layout_->addWidget(add_to_first_queue_, 3, 0, Qt::AlignCenter);
+    window_layout_->addWidget(add_to_second_queue_, 3, 5, Qt::AlignCenter);
+    window_layout_->addWidget(quantity_in_first_queue_, 1, 1, Qt::AlignCenter);
+    window_layout_->addWidget(quantity_in_second_queue_, 1, 4, Qt::AlignCenter);
+    window_layout_->addWidget(queue_1_, 2, 1, Qt::AlignCenter);
+    window_layout_->addWidget(queue_2_, 2, 4, Qt::AlignCenter);
+    window_layout_->addWidget(compare_queues_, 0, 2, Qt::AlignCenter);
+    window_layout_->addWidget(comparison_result_, 1, 2, Qt::AlignCenter);
+
 
     auto widget = new QWidget();
     widget->setLayout(window_layout_);
     setCentralWidget(widget);
+
+
 }
 
 void View::AddPersonToFirstQueue(const QString& name) {
