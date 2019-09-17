@@ -49,6 +49,11 @@ private:
 
     QListWidget* queue_1_;
     QListWidget* queue_2_;
+
+    QPushButton* compare_queues_;
+
+    QLabel* comarison_result_;
+
 };
 
 #endif // VIEW_H

@@ -14,7 +14,9 @@ View::View() : controller_(std::make_shared<Controller>(this)),
                add_to_first_queue_(new QPushButton()),
                add_to_second_queue_(new QPushButton()),
                queue_1_(new QListWidget()),
-               queue_2_(new QListWidget())
+               queue_2_(new QListWidget()),
+               compare_queues_(new QPushButton()),
+               comarison_result_(new QLabel())
 {
 
     auto items_size_policy =
