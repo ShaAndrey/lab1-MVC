@@ -18,53 +18,27 @@ View::View() : controller_(new Controller(this)),
                compare_queues_(new QPushButton("Сравнить очереди")),
                comparison_result_(new QLabel())
 {
-    setMinimumSize(1280, 720);
-
-//    auto items_size_policy =
-//        QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-
-//    label_1_->setSizePolicy(items_size_policy);
-//    label_2_->setSizePolicy(items_size_policy);
-//    serve_from_first_queue_->setSizePolicy(items_size_policy);
-//    serve_from_second_queue_->setSizePolicy(items_size_policy);
-//    name_to_first_queue_->setSizePolicy(items_size_policy);
-//    name_to_second_queue_->setSizePolicy(items_size_policy);
-//    add_to_first_queue_->setSizePolicy(items_size_policy);
-//    add_to_second_queue_->setSizePolicy(items_size_policy);
-//    quantity_in_first_queue_->setSizePolicy(items_size_policy);
-//    quantity_in_second_queue_->setSizePolicy(items_size_policy);
-//    queue_1_->setSizePolicy(items_size_policy);
-//    queue_2_->setSizePolicy(items_size_policy);
-//    compare_queues_->setSizePolicy(items_size_policy);
-//    comparison_result_->setSizePolicy(items_size_policy);
+    setFixedSize(700, 400);
 
     window_layout_->addWidget(label_1_, 0, 1, Qt::AlignCenter);
     window_layout_->addWidget(label_2_, 0, 4, Qt::AlignCenter);
-    window_layout_->addWidget(serve_from_first_queue_, 1, 0, Qt::AlignCenter);
-    window_layout_->addWidget(serve_from_second_queue_, 1, 5, Qt::AlignCenter);
-    window_layout_->addWidget(name_to_first_queue_, 2, 0, Qt::AlignCenter);
-    window_layout_->addWidget(name_to_second_queue_, 2, 5, Qt::AlignCenter);
-    window_layout_->addWidget(add_to_first_queue_, 3, 0, Qt::AlignCenter);
-    window_layout_->addWidget(add_to_second_queue_, 3, 5, Qt::AlignCenter);
-    window_layout_->addWidget(quantity_in_first_queue_, 1, 1, Qt::AlignCenter);
-    window_layout_->addWidget(quantity_in_second_queue_, 1, 4, Qt::AlignCenter);
-    window_layout_->addWidget(queue_1_, 2, 1, Qt::AlignCenter);
-    window_layout_->addWidget(queue_2_, 2, 4, Qt::AlignCenter);
-    window_layout_->addWidget(compare_queues_, 0, 2, Qt::AlignCenter);
-    window_layout_->addWidget(comparison_result_, 1, 2, Qt::AlignCenter);
+    window_layout_->addWidget(serve_from_first_queue_, 1, 0);
+    window_layout_->addWidget(serve_from_second_queue_, 1, num_of_coulumns_ - 1);
+    window_layout_->addWidget(name_to_first_queue_, 2, 0);
+    window_layout_->addWidget(name_to_second_queue_, 2, num_of_coulumns_ - 1);
+    window_layout_->addWidget(add_to_first_queue_, 3, 0);
+    window_layout_->addWidget(add_to_second_queue_, 3, num_of_coulumns_ - 1);
+    window_layout_->addWidget(quantity_in_first_queue_, 1, 1);
+    window_layout_->addWidget(quantity_in_second_queue_, 1, num_of_coulumns_ - 2);
+    window_layout_->addWidget(queue_1_, 2, 1, 3, 1);
+    window_layout_->addWidget(queue_2_, 2, num_of_coulumns_ - 2, 3, 1);
+    window_layout_->addWidget(compare_queues_, 0, 2, 1, 2);
+    window_layout_->addWidget(comparison_result_, 1, 2, 1, 2);
 
 
     auto widget = new QWidget();
     widget->setLayout(window_layout_);
     setCentralWidget(widget);
-
-    for (int i = 0; i < num_of_rows_; ++i) {
-        window_layout_->setRowStretch(i, 1);
-    }
-
-    for (int i = 0; i < num_of_coulumns_; ++i) {
-        window_layout_->setRowStretch(i, 1);
-    }
 
     connect(add_to_first_queue_, &QPushButton::clicked, [&]() {
         controller_->AddPersonToFirstQueue(name_to_first_queue_->text());
