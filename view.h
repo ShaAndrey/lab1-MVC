@@ -1,8 +1,8 @@
 #ifndef VIEW_H
 #define VIEW_H
 
-#include <QtWidgets/QMainWindow>
-#include <QtWidgets/QLabel>
+#include <QMainWindow>
+#include <QLabel>
 
 #include "abstractview.h"
 #include "memory"

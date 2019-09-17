@@ -12,19 +12,19 @@ View::View() : controller_(std::make_shared<Controller>(this)),
     label_1_->setSizePolicy(items_size_policy);
 }
 
-void AddPersonToFirstQueue(const QString& name) {
+void View::AddPersonToFirstQueue(const QString& name) {
 
 }
-void AddPersonToSecondQueue(const QString& name) {
+void View::AddPersonToSecondQueue(const QString& name) {
 
 }
-void ServePersonInFirstQueue() {
+void View::ServePersonInFirstQueue() {
 
 }
-void ServePersonInSecondQueue() {
+void View::ServePersonInSecondQueue() {
 
 }
-void CompareQueues() {
+void View::CompareQueues(bool queues_comparison_) {
 
 }
 
