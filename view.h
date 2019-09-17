@@ -55,7 +55,7 @@ private:
     QLabel* comparison_result_;
 
     const int num_of_rows_ = 9;
-    const int num_coulumns_ = 6;
+    const int num_of_coulumns_ = 6;
 
 };
 

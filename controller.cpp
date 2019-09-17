@@ -1,9 +1,7 @@
 #include "controller.h"
 
 
-Controller::Controller(AbstractView* view) {
-
-}
+Controller::Controller(AbstractView* view) : view_(view) {}
 
 void Controller::CheckViewExistance() {
     if(view_ == nullptr) {

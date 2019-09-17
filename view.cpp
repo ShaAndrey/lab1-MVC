@@ -16,13 +16,12 @@ View::View() : controller_(std::make_shared<Controller>(this)),
                queue_1_(new QListWidget()),
                queue_2_(new QListWidget()),
                compare_queues_(new QPushButton("Сравнить очереди")),
-
                comparison_result_(new QLabel())
 {
     setMinimumSize(1280, 720);
 
-    auto items_size_policy =
-        QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+//    auto items_size_policy =
+//        QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
 //    label_1_->setSizePolicy(items_size_policy);
 //    label_2_->setSizePolicy(items_size_policy);
@@ -67,6 +66,14 @@ View::View() : controller_(std::make_shared<Controller>(this)),
         controller_->AddPersonToSecondQueue(name_to_second_queue_->text());
         name_to_second_queue_->setText("");
     };
+
+    for (int i = 0; i < num_of_rows_; ++i) {
+        window_layout_->setRowStretch(i, 1);
+    }
+
+    for (int i = 0; i < num_of_coulumns_; ++i) {
+        window_layout_->setRowStretch(i, 1);
+    }
 
     connect(add_to_first_queue_, &QPushButton::clicked, add_to_first_queue_slot);
     connect(add_to_second_queue_, &QPushButton::clicked, add_to_second_queue_slot);

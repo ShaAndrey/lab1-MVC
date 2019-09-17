@@ -12,5 +12,6 @@ int main(int argc, char *argv[])
     auto view = std::make_shared<View>();
     view->show();
 
+
     return a.exec();
 }
