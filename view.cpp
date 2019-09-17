@@ -41,7 +41,7 @@ View::View() : controller_(new Controller(this)),
     window_layout_->addWidget(queue_1_, 2, 2, 4, 1);
     window_layout_->addWidget(queue_2_, 2, num_of_coulumns_ - 3, 4, 1);
     window_layout_->addWidget(compare_queues_, 0, 3, 1, 2);
-    window_layout_->addWidget(comparison_result_, 1, 3, 1, 2);
+    window_layout_->addWidget(comparison_result_, 1, 3, 1, 2, Qt::AlignCenter);
 
     window_layout_->addWidget(new_name_1_queue_, 4, 0, Qt::AlignCenter);
     window_layout_->addWidget(new_name_2_queue_, 4, num_of_coulumns_ - 1, Qt::AlignCenter);
