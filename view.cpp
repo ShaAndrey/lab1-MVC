@@ -16,25 +16,41 @@ View::View() : controller_(new Controller(this)),
                queue_1_(new QListWidget()),
                queue_2_(new QListWidget()),
                compare_queues_(new QPushButton("Сравнить очереди")),
-               comparison_result_(new QLabel())
+               comparison_result_(new QLabel()),
+               up_1_queue_(new QPushButton("Вверх")),
+               up_2_queue_(new QPushButton("Вверх")),
+               down_1_queue_(new QPushButton("Вниз")),
+               down_2_queue_(new QPushButton("Вниз")),
+               new_name_1_queue_(new QLineEdit()),
+               new_name_2_queue_(new QLineEdit()),
+               change_name_1_queue_(new QPushButton("Поменяться")),
+               change_name_2_queue_(new QPushButton("Поменяться"))
 {
     setFixedSize(700, 400);
 
-    window_layout_->addWidget(label_1_, 0, 1, Qt::AlignCenter);
-    window_layout_->addWidget(label_2_, 0, 4, Qt::AlignCenter);
-    window_layout_->addWidget(serve_from_first_queue_, 1, 0);
-    window_layout_->addWidget(serve_from_second_queue_, 1, num_of_coulumns_ - 1);
-    window_layout_->addWidget(name_to_first_queue_, 2, 0);
-    window_layout_->addWidget(name_to_second_queue_, 2, num_of_coulumns_ - 1);
-    window_layout_->addWidget(add_to_first_queue_, 3, 0);
-    window_layout_->addWidget(add_to_second_queue_, 3, num_of_coulumns_ - 1);
-    window_layout_->addWidget(quantity_in_first_queue_, 1, 1);
-    window_layout_->addWidget(quantity_in_second_queue_, 1, num_of_coulumns_ - 2);
-    window_layout_->addWidget(queue_1_, 2, 1, 3, 1);
-    window_layout_->addWidget(queue_2_, 2, num_of_coulumns_ - 2, 3, 1);
-    window_layout_->addWidget(compare_queues_, 0, 2, 1, 2);
-    window_layout_->addWidget(comparison_result_, 1, 2, 1, 2);
+    window_layout_->addWidget(label_1_, 0, 2, Qt::AlignCenter);
+    window_layout_->addWidget(label_2_, 0, num_of_coulumns_ - 3, Qt::AlignCenter);
+    window_layout_->addWidget(serve_from_first_queue_, 1, 1);
+    window_layout_->addWidget(serve_from_second_queue_, 1, num_of_coulumns_ - 2);
+    window_layout_->addWidget(name_to_first_queue_, 2, 1);
+    window_layout_->addWidget(name_to_second_queue_, 2, num_of_coulumns_ - 2);
+    window_layout_->addWidget(add_to_first_queue_, 3, 1);
+    window_layout_->addWidget(add_to_second_queue_, 3, num_of_coulumns_ - 2);
+    window_layout_->addWidget(quantity_in_first_queue_, 1, 2);
+    window_layout_->addWidget(quantity_in_second_queue_, 1, num_of_coulumns_ - 3);
+    window_layout_->addWidget(queue_1_, 2, 2, 4, 1);
+    window_layout_->addWidget(queue_2_, 2, num_of_coulumns_ - 3, 4, 1);
+    window_layout_->addWidget(compare_queues_, 0, 3, 1, 2);
+    window_layout_->addWidget(comparison_result_, 1, 3, 1, 2);
 
+    window_layout_->addWidget(new_name_1_queue_, 4, 0, Qt::AlignCenter);
+    window_layout_->addWidget(new_name_2_queue_, 4, num_of_coulumns_ - 1, Qt::AlignCenter);
+    window_layout_->addWidget(up_1_queue_, 4, 1);
+    window_layout_->addWidget(up_2_queue_, 4, num_of_coulumns_ - 2);
+    window_layout_->addWidget(down_1_queue_, 5, 1);
+    window_layout_->addWidget(down_2_queue_, 5, num_of_coulumns_ - 2);
+    window_layout_->addWidget(change_name_1_queue_, 5, 0);
+    window_layout_->addWidget(change_name_2_queue_, 5, num_of_coulumns_ - 1);
 
     auto widget = new QWidget();
     widget->setLayout(window_layout_);

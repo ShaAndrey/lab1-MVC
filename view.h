@@ -54,8 +54,21 @@ private:
 
     QLabel* comparison_result_;
 
+    QPushButton* up_1_queue_;
+    QPushButton* up_2_queue_;
+
+    QPushButton* down_1_queue_;
+    QPushButton* down_2_queue_;
+
+    QLineEdit* new_name_1_queue_;
+    QLineEdit* new_name_2_queue_;
+
+    QPushButton* change_name_1_queue_;
+    QPushButton* change_name_2_queue_;
+
+
     const int num_of_rows_ = 9;
-    const int num_of_coulumns_ = 6;
+    const int num_of_coulumns_ = 8;
 
 };
 
