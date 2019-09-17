@@ -15,7 +15,5 @@ public:
     virtual void CompareQueues() override;
     void CheckViewExistance();
 
-private:
-  AbstractView* view_ = nullptr;
 };
 #endif // CONTROLLER_H
