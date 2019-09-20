@@ -16,6 +16,15 @@ public:
     virtual void ServePersonInSecondQueue() override;
     virtual void CompareQueues() override;
 
+    virtual void GoUpInFirstQueue() override;
+    virtual void GoDownInFirstQueue() override;
+    virtual void GoUpInSecondQueue() override;
+    virtual void GoDownInSecondQueue() override;
+
+
+    virtual void ChangeNameInFirstQueue(const QString& name) override;
+    virtual void ChangeNameInSecondQueue(const QString& name) override;
+
 private:
     AbstractView* view_;
     Queue<QString> first_queue_;

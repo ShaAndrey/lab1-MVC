@@ -13,5 +13,5 @@ int main(int argc, char *argv[])
     view->show();
 
 
-    return a.exec();
+//    return a.exec();
 }

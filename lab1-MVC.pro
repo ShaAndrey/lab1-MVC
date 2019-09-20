@@ -30,4 +30,7 @@ HEADERS += \
     queue.h \
     abstractcontroller.h \
     controller.h \
-    view.h
+    view.h \
+    iterator.h \
+    iterator.h \
+    iterable.h

@@ -18,6 +18,14 @@ public:
     virtual void ServePersonInSecondQueue() = 0;
     virtual void CompareQueues() = 0;
 
+    virtual void GoUpInFirstQueue() = 0;
+    virtual void GoDownInFirstQueue() = 0;
+    virtual void GoUpInSecondQueue() = 0;
+    virtual void GoDownInSecondQueue() = 0;
+
+
+    virtual void ChangeNameInFirstQueue(const QString& name) = 0;
+    virtual void ChangeNameInSecondQueue(const QString& name) = 0;
 };
 
 #endif // ABSTRACTCONTROLLER_H

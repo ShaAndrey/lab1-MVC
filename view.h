@@ -26,6 +26,13 @@ public:
     virtual void ServePersonInFirstQueue() override;
     virtual void ServePersonInSecondQueue() override;
     virtual void CompareQueues(bool queues_comparison_) override;
+    virtual void GoUpInFirstQueue() override;
+    virtual void GoDownInFirstQueue() override;
+    virtual void GoUpInSecondQueue() override;
+    virtual void GoDownInSecondQueue() override;
+
+    virtual void ChangeNameInFirstQueue(const QString& name) override;
+    virtual void ChangeNameInSecondQueue(const QString& name) override;
 
 private:
     Controller* controller_;
