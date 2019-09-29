@@ -22,15 +22,15 @@ void Controller::AddPersonToSecondQueue(const QString& name) {
 
 void Controller::ServePersonInFirstQueue() {
     if(!first_queue_.IsEmpty()) {
+     cashier.VisitQueue(&first_queue_);
      view_->ServePersonInFirstQueue();
-     first_queue_.Pop();
     }
 }
 
 
 void Controller::ServePersonInSecondQueue() {
     if(!second_queue_.IsEmpty()) {
-    second_queue_.Pop();
+    cashier.VisitQueue(&second_queue_);
     view_->ServePersonInSecondQueue();
     }
 }
@@ -78,5 +78,28 @@ void Controller::ChangeNameInSecondQueue(const QString & name) {
     view_->ChangeNameInSecondQueue(name);
 }
 
+void Controller::ServePersonInFirstCrowd() {
+    if(!first_crowd_.IsEmpty()) {
+//        qDebug("ServePersonInFirstCrowd");
+        cashier.VisitCrowd(&first_crowd_);
+        view_->ServePersonInFirstCrowd(first_crowd_.CrowdAsVector());
+    }
+}
+void Controller::ServePersonInSecondCrowd() {
+    if(!second_crowd_.IsEmpty()) {
+        cashier.VisitCrowd(&second_crowd_);
+        view_->ServePersonInSecondCrowd(second_crowd_.CrowdAsVector());
+    }
+}
+
+void Controller::AddPersonToFirstCrowd(const QString& name) {
+    first_crowd_.Push(name);
+    view_->AddPersonToFirstCrowd(name);
+}
+
+void Controller::AddPersonToSecondCrowd(const QString& name) {
+    second_crowd_.Push(name);
+    view_->AddPersonToSecondCrowd(name);
+}
 
 Controller::~Controller() {}

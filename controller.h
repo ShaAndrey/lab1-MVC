@@ -25,10 +25,19 @@ public:
     virtual void ChangeNameInFirstQueue(const QString& name) override;
     virtual void ChangeNameInSecondQueue(const QString& name) override;
 
+    virtual void AddPersonToFirstCrowd(const QString& name) override;
+    virtual void AddPersonToSecondCrowd(const QString& name) override;
+
+    virtual void ServePersonInFirstCrowd() override;
+    virtual void ServePersonInSecondCrowd() override;
+
 private:
     AbstractView* view_;
     Queue<QString> first_queue_;
     Queue<QString> second_queue_;
+    Crowd<QString> first_crowd_;
+    Crowd<QString> second_crowd_;
     bool queues_comparison_;
+    Cashier<QString> cashier;
 };
 #endif // CONTROLLER_H

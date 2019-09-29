@@ -7,8 +7,8 @@ View::View() : controller_(new Controller(this)),
                label_2_(new QLabel("Касса 2")),
                name_to_first_queue_(new QLineEdit()),
                name_to_second_queue_(new QLineEdit()),
-               serve_from_first_queue_(new QPushButton("Обслужить")),
-               serve_from_second_queue_(new QPushButton("Обслужить")),
+               serve_from_first_queue_(new QPushButton("Обслужить из очереди")),
+               serve_from_second_queue_(new QPushButton("Обслужить из очереди")),
                quantity_in_first_queue_(new QLCDNumber(2)),
                quantity_in_second_queue_(new QLCDNumber(2)),
                add_to_first_queue_(new QPushButton("В очередь")),
@@ -24,9 +24,15 @@ View::View() : controller_(new Controller(this)),
                new_name_1_queue_(new QLineEdit()),
                new_name_2_queue_(new QLineEdit()),
                change_name_1_queue_(new QPushButton("Поменяться")),
-               change_name_2_queue_(new QPushButton("Поменяться"))
+               change_name_2_queue_(new QPushButton("Поменяться")),
+               crowd_1_(new QListWidget()),
+               crowd_2_(new QListWidget()),
+               add_to_crowd_1_(new QPushButton("В толпу")),
+               add_to_crowd_2_(new QPushButton("В толпу")),
+               serve_from_crowd_1_(new QPushButton("Обслужить из толпы")),
+               serve_from_crowd_2_(new QPushButton("Обслужить из толпы"))
 {
-    setFixedSize(700, 400);
+    setFixedSize(1000, 500);
 
     window_layout_->addWidget(label_1_, 0, 2, Qt::AlignCenter);
     window_layout_->addWidget(label_2_, 0, num_of_coulumns_ - 3,
@@ -34,8 +40,8 @@ View::View() : controller_(new Controller(this)),
     window_layout_->addWidget(serve_from_first_queue_, 1, 1);
     window_layout_->addWidget(serve_from_second_queue_, 1,
                               num_of_coulumns_ - 2);
-    window_layout_->addWidget(name_to_first_queue_, 2, 1);
-    window_layout_->addWidget(name_to_second_queue_, 2, num_of_coulumns_ - 2);
+    window_layout_->addWidget(name_to_first_queue_, 2, 0, 1, 2);
+    window_layout_->addWidget(name_to_second_queue_, 2, num_of_coulumns_ - 2, 1, 2);
     window_layout_->addWidget(add_to_first_queue_, 3, 1);
     window_layout_->addWidget(add_to_second_queue_, 3, num_of_coulumns_ - 2);
     window_layout_->addWidget(quantity_in_first_queue_, 1, 2);
@@ -55,6 +61,16 @@ View::View() : controller_(new Controller(this)),
     window_layout_->addWidget(down_2_queue_, 5, num_of_coulumns_ - 2);
     window_layout_->addWidget(change_name_1_queue_, 5, 0);
     window_layout_->addWidget(change_name_2_queue_, 5, num_of_coulumns_ - 1);
+
+    window_layout_->addWidget(crowd_1_, 2, 3, 4, 1);
+    window_layout_->addWidget(crowd_2_, 2, num_of_coulumns_ - 4, 4, 1);
+
+    window_layout_->addWidget(add_to_crowd_1_, 3, 0);
+    window_layout_->addWidget(add_to_crowd_2_, 3, num_of_coulumns_ - 1);
+    window_layout_->addWidget(serve_from_crowd_1_, 1, 0);
+    window_layout_->addWidget(serve_from_crowd_2_, 1,
+                              num_of_coulumns_ - 1);
+
 
 
     auto widget = new QWidget();
@@ -98,6 +114,22 @@ View::View() : controller_(new Controller(this)),
 
     connect(change_name_1_queue_, &QPushButton::clicked, [&]() {
         controller_->ChangeNameInFirstQueue(new_name_1_queue_->text());
+    });
+
+    connect(add_to_crowd_1_, &QPushButton::clicked, [&]() {
+        controller_->AddPersonToFirstCrowd(name_to_first_queue_->text());
+        name_to_first_queue_->setText("");
+    });
+
+    connect(add_to_crowd_2_, &QPushButton::clicked, [&]() {
+        controller_->AddPersonToSecondCrowd(name_to_second_queue_->text());
+        name_to_second_queue_->setText("");
+    });
+    connect(serve_from_crowd_1_, &QPushButton::clicked, [&]() {
+        controller_->ServePersonInFirstCrowd();
+    });
+    connect(serve_from_crowd_2_, &QPushButton::clicked, [&]() {
+        controller_->ServePersonInSecondCrowd();
     });
 }
 
@@ -150,6 +182,32 @@ void View::ChangeNameInFirstQueue(const QString &name) {
 
 void View::ChangeNameInSecondQueue(const QString &name) {
     queue_2_->currentItem()->setData(0, name);
+}
+
+void View::ServePersonInFirstCrowd(const std::vector<QString>& crowd) {
+    crowd_1_->clear();
+    for (size_t i = 0; i < crowd.size(); ++i) {
+    crowd_1_->addItem(crowd[i]);
+    }
+}
+
+
+void View::ServePersonInSecondCrowd(const std::vector<QString>& crowd) {
+    crowd_2_->clear();
+    for (size_t i = 0; i < crowd.size(); ++i) {
+    crowd_2_->addItem(crowd[i]);
+    }
+}
+
+
+void View::AddPersonToFirstCrowd(const QString& name) {
+    crowd_1_->addItem(name);
+    crowd_1_->setCurrentRow(0);
+}
+
+void View::AddPersonToSecondCrowd(const QString& name) {
+    crowd_2_->addItem(name);
+    crowd_2_->setCurrentRow(0);
 }
 
 View::~View() {

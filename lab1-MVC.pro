@@ -33,4 +33,8 @@ HEADERS += \
     view.h \
     iterator.h \
     iterator.h \
-    iterable.h
+    iterable.h \
+    peoplegroup.h \
+    crowd.h \
+    visitor.h \
+    cashier.h

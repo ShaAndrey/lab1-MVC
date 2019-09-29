@@ -2,6 +2,7 @@
 #define ABSTRACTVIEW_H
 
 #include <QString>
+#include <vector>
 
 class AbstractView
 {
@@ -21,6 +22,11 @@ public:
 
     virtual void ChangeNameInFirstQueue(const QString& name) = 0;
     virtual void ChangeNameInSecondQueue(const QString& name) = 0;
+
+    virtual void AddPersonToFirstCrowd(const QString& name) = 0;
+    virtual void AddPersonToSecondCrowd(const QString& name) = 0;
+    virtual void ServePersonInFirstCrowd(const std::vector<QString>& crowd) = 0;
+    virtual void ServePersonInSecondCrowd(const std::vector<QString>& crowd) = 0;
 };
 
 #endif // ABSTRACTVIEW_H

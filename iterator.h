@@ -27,7 +27,7 @@ class QueueIterator : public Iterator<T> {
   T& GetCurrent() override;
 
  private:
-  uint64_t position_ = 0;
+  int position_ = 0;
   int size_;
   T* data_;
 };

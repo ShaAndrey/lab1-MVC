@@ -2,7 +2,6 @@
 #include <QApplication>
 
 #include <memory>
-
 #include "view.h"
 
 int main(int argc, char *argv[])
@@ -12,6 +11,5 @@ int main(int argc, char *argv[])
     auto view = new View();
     view->show();
 
-
-//    return a.exec();
+    return a.exec();
 }

@@ -34,6 +34,12 @@ public:
     virtual void ChangeNameInFirstQueue(const QString& name) override;
     virtual void ChangeNameInSecondQueue(const QString& name) override;
 
+    virtual void AddPersonToFirstCrowd(const QString& name) override;
+    virtual void AddPersonToSecondCrowd(const QString& name) override;
+
+    virtual void ServePersonInFirstCrowd(const std::vector<QString>& crowd) override;
+    virtual void ServePersonInSecondCrowd(const std::vector<QString>& crowd) override;
+
 private:
     Controller* controller_;
 
@@ -72,6 +78,15 @@ private:
 
     QPushButton* change_name_1_queue_;
     QPushButton* change_name_2_queue_;
+
+    QListWidget* crowd_1_;
+    QListWidget* crowd_2_;
+
+    QPushButton* add_to_crowd_1_;
+    QPushButton* add_to_crowd_2_;
+
+    QPushButton* serve_from_crowd_1_;
+    QPushButton* serve_from_crowd_2_;
 
 
     const int num_of_rows_ = 9;

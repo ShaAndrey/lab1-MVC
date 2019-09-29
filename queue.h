@@ -3,9 +3,10 @@
 
 #include "iterator.h"
 #include "iterable.h"
+#include "peoplegroup.h"
 
 template<typename T>
-class Queue : public Iterable<T> {
+class Queue : public Iterable<T>, public PeopleGroup<T> {
  public:
 
   Queue();
@@ -30,6 +31,8 @@ class Queue : public Iterable<T> {
   bool IsEmpty() const;
 
   void CreateIterator();
+
+  void AcceptVisitor(Visitor<T>& v) override;
 
  private:
   int head_ = 0;
@@ -170,6 +173,12 @@ void Queue<T>::Reorginize(int new_size) {
 template<typename T>
 void Queue<T>::CreateIterator() {
   iterator = new QueueIterator<T>(size_, data_);
+}
+
+
+template<typename T>
+void Queue<T>::AcceptVisitor(Visitor<T>& v) {
+  v.VisitQueue(this);
 }
 
 

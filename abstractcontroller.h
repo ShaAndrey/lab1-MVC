@@ -5,6 +5,8 @@
 #include <QString>
 
 #include <queue.h>
+#include <crowd.h>
+#include <cashier.h>
 #include "abstractview.h"
 
 class AbstractController {
@@ -26,6 +28,11 @@ public:
 
     virtual void ChangeNameInFirstQueue(const QString& name) = 0;
     virtual void ChangeNameInSecondQueue(const QString& name) = 0;
+
+    virtual void AddPersonToFirstCrowd(const QString& name) = 0;
+    virtual void AddPersonToSecondCrowd(const QString& name) = 0;
+    virtual void ServePersonInFirstCrowd() = 0;
+    virtual void ServePersonInSecondCrowd() = 0;
 };
 
 #endif // ABSTRACTCONTROLLER_H
