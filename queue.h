@@ -30,7 +30,7 @@ class Queue : public Iterable<T>, public PeopleGroup<T> {
 
   bool IsEmpty() const;
 
-  void CreateIterator();
+  void CreateIterator(Iterator<T>* queue_iterator) override;
 
   void AcceptVisitor(Visitor<T>& v) override;
 
@@ -48,8 +48,6 @@ class Queue : public Iterable<T>, public PeopleGroup<T> {
 
   T* data_;
 
- public:
-  QueueIterator<T>* iterator;
 };
 
 template<typename T>
@@ -71,12 +69,10 @@ bool Queue<T>::operator!=(const Queue& other) {
 }
 
 template<typename T>
-Queue<T>::Queue() : max_size_(4), data_(new T[max_size_]),
-                    iterator(new QueueIterator<T>(size_, data_)) {}
+Queue<T>::Queue() : max_size_(4), data_(new T[max_size_]) {}
 
 template<typename T>
-Queue<T>::Queue(int max_size) : max_size_(max_size), data_(new T[max_size_]),
-                                iterator(new QueueIterator<T>(size_, data_)) {}
+Queue<T>::Queue(int max_size) : max_size_(max_size), data_(new T[max_size_]) {}
 
 template<typename T>
 Queue<T>::Queue(const Queue& other) :
@@ -84,8 +80,7 @@ Queue<T>::Queue(const Queue& other) :
     tail_(other.tail_),
     size_(other.size_),
     max_size_(other.max_size_),
-    data_(new T[max_size_]),
-    iterator(new QueueIterator<T>(size_, data_)) {
+    data_(new T[max_size_]) {
   for (int i = 0; i < size_; ++i) {
     data_[(head_ + i) % max_size_] = other.data_[(head_ + i) % max_size_];
   }
@@ -109,7 +104,6 @@ void Queue<T>::Push(const T& value) {
   }
   data_[tail_] = value;
   ++size_;
-  CreateIterator();
 }
 
 template<typename T>
@@ -133,7 +127,6 @@ bool Queue<T>::Pop() {
     head_ = (head_ + 1) % max_size_;
   }
   --size_;
-  CreateIterator();
   return true;
 }
 
@@ -171,8 +164,8 @@ void Queue<T>::Reorganize(int new_size) {
 }
 
 template<typename T>
-void Queue<T>::CreateIterator() {
-  iterator = new QueueIterator<T>(size_, data_);
+void Queue<T>::CreateIterator(Iterator<T>* queue_iterator) {
+  queue_iterator = new QueueIterator<T>(size_, data_);
 }
 
 

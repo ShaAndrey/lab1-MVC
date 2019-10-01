@@ -2,6 +2,7 @@
 #define CONTROLLER_H
 
 #include "abstractcontroller.h"
+#include "iterator.h"
 
 class Controller : public AbstractController {
 public:
@@ -39,5 +40,7 @@ private:
     Crowd<QString> second_crowd_;
     bool queues_comparison_;
     Cashier<QString> cashier;
+    QueueIterator<QString>* first_queue_iterator_;
+    QueueIterator<QString>* second_queue_iterator_;
 };
 #endif // CONTROLLER_H
