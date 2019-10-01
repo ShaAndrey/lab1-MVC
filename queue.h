@@ -40,7 +40,7 @@ class Queue : public Iterable<T>, public PeopleGroup<T> {
   int size_ = 0;
   int max_size_;
 
-  void Reorginize(int new_size);
+  void Reorganize(int new_size);
 
   int MaxSize() const;
 
@@ -102,7 +102,7 @@ Queue<T>::~Queue() {
 template<typename T>
 void Queue<T>::Push(const T& value) {
   if (IsFull()) {
-    Reorginize(max_size_ * 2);
+    Reorganize(max_size_ * 2);
   }
   if (!IsEmpty()) {
     tail_ = (tail_ + 1) % max_size_;
@@ -127,7 +127,7 @@ bool Queue<T>::Pop() {
     return false;
   }
   if (size_ < max_size_ / 4) {
-    Reorginize(max_size_ / 2);
+    Reorganize(max_size_ / 2);
   }
   if (size_ != 1) {
     head_ = (head_ + 1) % max_size_;
@@ -158,7 +158,7 @@ bool Queue<T>::IsFull() const {
 }
 
 template<typename T>
-void Queue<T>::Reorginize(int new_size) {
+void Queue<T>::Reorganize(int new_size) {
   auto b = new T[new_size];
   for (int i = 0; i < size_; ++i) {
     b[i] = data_[(head_ + i) % max_size_];
