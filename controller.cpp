@@ -1,4 +1,5 @@
 #include "controller.h"
+#include <QDebug>
 
 void Controller::SetView(AbstractView* view) {
     view_ = view;
@@ -10,21 +11,21 @@ Controller::Controller(AbstractView* view) {
 
 void Controller::AddPersonToFirstQueue(const QString& name) {
     first_queue_.Push(name);
-    first_queue_.CreateIterator(first_queue_iterator_);
+    first_queue_iterator_ = first_queue_.CreateIterator();
     view_->AddPersonToFirstQueue(name);
 }
 
 
 void Controller::AddPersonToSecondQueue(const QString& name) {
     second_queue_.Push(name);
-    second_queue_.CreateIterator(second_queue_iterator_);
+    second_queue_iterator_ = second_queue_.CreateIterator();
     view_->AddPersonToSecondQueue(name);
 }
 
 void Controller::ServePersonInFirstQueue() {
     if(!first_queue_.IsEmpty()) {
         first_queue_.AcceptVisitor(cashier);
-        first_queue_.CreateIterator(first_queue_iterator_);
+        first_queue_iterator_ = first_queue_.CreateIterator();
         view_->ServePersonInFirstQueue();
     }
 }
@@ -33,7 +34,7 @@ void Controller::ServePersonInFirstQueue() {
 void Controller::ServePersonInSecondQueue() {
     if(!second_queue_.IsEmpty()) {
         second_queue_.AcceptVisitor(cashier);
-        second_queue_.CreateIterator(second_queue_iterator_);
+        second_queue_iterator_ = second_queue_.CreateIterator();
         view_->ServePersonInSecondQueue();
     }
 }

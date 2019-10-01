@@ -116,6 +116,10 @@ View::View() : controller_(new Controller(this)),
         controller_->ChangeNameInFirstQueue(new_name_1_queue_->text());
     });
 
+    connect(change_name_2_queue_, &QPushButton::clicked, [&]() {
+        controller_->ChangeNameInSecondQueue(new_name_2_queue_->text());
+    });
+
     connect(add_to_crowd_1_, &QPushButton::clicked, [&]() {
         controller_->AddPersonToFirstCrowd(name_to_first_queue_->text());
         name_to_first_queue_->setText("");

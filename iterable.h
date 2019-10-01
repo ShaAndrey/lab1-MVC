@@ -6,7 +6,7 @@
 template <typename T>
 class Iterable {
  public:
-  virtual void CreateIterator (Iterator<T>* iterator) = 0;
+  virtual Iterator<T>* CreateIterator () = 0;
 };
 
 #endif //LAB1_ITERABLE_H

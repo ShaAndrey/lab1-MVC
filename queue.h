@@ -30,7 +30,7 @@ class Queue : public Iterable<T>, public PeopleGroup<T> {
 
   bool IsEmpty() const;
 
-  void CreateIterator(Iterator<T>* queue_iterator) override;
+  QueueIterator<T>* CreateIterator();
 
   void AcceptVisitor(Visitor<T>& v) override;
 
@@ -164,8 +164,8 @@ void Queue<T>::Reorganize(int new_size) {
 }
 
 template<typename T>
-void Queue<T>::CreateIterator(Iterator<T>* queue_iterator) {
-  queue_iterator = new QueueIterator<T>(size_, data_);
+QueueIterator<T>* Queue<T>::CreateIterator() {
+  return new QueueIterator<T>(size_, data_);
 }
 
 
